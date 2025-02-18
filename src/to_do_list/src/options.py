@@ -3,9 +3,9 @@ from datetime import datetime
 
 conn = mysql.connector.connect(
     host="localhost",   
-    user="root",        
-    password="password",  
-    database="todo"  
+    user="<user_name>",        
+    password="<your-password>",  
+    database="<database_name>"  
 )
 
 cursor = conn.cursor(buffered=True)
