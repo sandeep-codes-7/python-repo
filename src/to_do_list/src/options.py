@@ -11,7 +11,7 @@ conn = mysql.connector.connect(
 
 cursor = conn.cursor(buffered=True)
 
-table_name="todolist"
+table_name="<your table name>"
 
 def is_valid_date(date_string, date_format="%Y-%m-%d"):
     try:
@@ -21,16 +21,16 @@ def is_valid_date(date_string, date_format="%Y-%m-%d"):
         return False
 
 def check_id(table, id_value):
-    query = f"SELECT exists(SELECT 1 FROM {table} WHERE id = %s)"
-    cursor.execute(query, (id_value,))
+    q = f"SELECT exists(SELECT 1 FROM {table} WHERE id = %s)"
+    cursor.execute(q, (id_value,))
     conn.commit()
     return cursor.fetchone()[0] == 1
 
 def is_exist(task):
-    query = f"SELECT exists(select 1 from todolist where task like %s)"
+    q = f"SELECT exists(select 1 from todolist where task like %s)"
     #print(type(task))
-    v = f'%{task}%'
-    cursor.execute(query, (task,))
+    #v = f'%{task}%'
+    cursor.execute(q, (task,))
     return cursor.fetchone()[0] == 1
 
 def add_task():
@@ -48,7 +48,6 @@ def add_task():
         else:
             q="insert into todolist(task,status,deadline) values(%s,%s,%s)"
             v=(task,status,date)
-
             cursor.execute(q,v)
             conn.commit()
             print("success!")
@@ -78,7 +77,7 @@ def update_task():
         id_=int(input("Enter id: "))
         if check_id(table_name, id_):
             new_id = int(input("Enter new id: "))
-            q="update todolist set id=%s where id=%s"
+            q=f"update {table_name} set id=%s where id=%s"
             v=(new_id,id_)
             cursor.execute(q,v)
             conn.commit()
@@ -92,7 +91,7 @@ def update_task():
         task = input("Enter task: ")
         if is_exist(task):
             new_task = input("Enter new task: ")
-            q="update todolist set task=%s where task=%s"
+            q=f"update {table_name} set task=%s where task=%s"
             v=(new_task,task)
             cursor.execute(q,v)
             conn.commit()
@@ -101,7 +100,7 @@ def update_task():
             if ans == 'y' or ans == 'yes':
                 date = input("Enter deadline(yyyy-mm-dd): ")
                 new_deadline = input("Enter new deadline(yyyy-mm-dd): ")
-                q="update todolist set deadline=%s where id=%s"
+                q=f"update {table_name} set deadline=%s where id=%s"
                 v=(new_deadline,13)
                 cursor.execute(q,v)
                 conn.commit()
@@ -119,7 +118,7 @@ def update_task():
         if is_exist(task):
             new_status = input("Enter new status(true/false): ").capitalize()
             if new_status == 'True' or new_status == 'False':
-                q="update todolist set status=%s where task=%s"
+                q=f"update {table_name} set status=%s where task=%s"
                 if new_status == 'True':
                     v=(True,task)
                 else:
@@ -135,7 +134,7 @@ def update_task():
         task = input("Enter task: ")
         if is_exist(task):
             new_deadline = input("Enter new deadline(yyyy-mm-dd): ")
-            q="update todolist set deadline=%s where task=%s"
+            q=f"update {table_name} set deadline=%s where task=%s"
             v=(new_deadline,task)
             cursor.execute(q,v)
             conn.commit()
@@ -153,7 +152,7 @@ def update_task():
 def mark_as_done():
     task = input("Enter task: ")
     if is_exist(task):
-        q="update todolist set status=%s where task=%s"
+        q=f"update {table_name} set status=%s where task=%s"
         v=(True,task)
         cursor.execute(q,v)
         conn.commit()
@@ -166,7 +165,7 @@ def mark_as_done():
 def delete_task():
     task = input("Enter task: ")
     if is_exist(task):
-        q="delete from todolist where task=%s"
+        q=f"delete from {table_name} where task=%s"
         v=(task,)
         cursor.execute(q,v)
         conn.commit()
@@ -177,7 +176,7 @@ def delete_task():
         return 'task not found!'
     
 def delete_done_task():
-    q="delete from todolist where status=%s"
+    q=f"delete from {table_name} where status=%s"
     v=(True,)
     cursor.execute(q,v)
     conn.commit()
@@ -187,7 +186,7 @@ def delete_done_task():
 def delete_all():
     user = input("are you sure?(y/n) ").lower()
     if user == 'y' or user == 'yes':
-        q="truncate todolist"
+        q=f"truncate {table_name}"
         cursor.execute(q)
         conn.commit()
         print("success!")
