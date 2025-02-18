@@ -16,8 +16,7 @@
 - in this project, I've used mysql.
 - to use mysql in your project, you should have downloaded the module called *mysql-connector-python*
 - to install this, run this command in your terminal:
-```
-sh
+```sh
 pip install mysql-connector-python
 ```
 - after installation, make sure you go through the official documentation or refer some tutorials to understand terms like *cursor*,*connection*
