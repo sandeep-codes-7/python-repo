@@ -12,3 +12,13 @@
 - to delete a particular task, we have *delete_task()*
 - to delete all the tasks, we have *delete_all()*
 - to validate some conditions like dates and other stuff we have created few functions..
+## database:
+- in this project, I've used mysql.
+- to use mysql in your project, you should have downloaded the module called *mysql-connector-python*
+- to install this, run this command in your terminal:
+```
+sh
+pip install mysql-connector-python
+```
+- after installation, make sure you go through the official documentation or refer some tutorials to understand terms like *cursor*,*connection*
+- click [here](https://dev.mysql.com/doc/connector-python/en/connector-python-api-mysqlconnection.html) to read the documentation from mysql on mysql connector python.
