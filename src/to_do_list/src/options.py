@@ -34,7 +34,6 @@ def is_exist(task):
 
 def add_task():
     try:
-        #id_=int(input("enter id: "))
         task = input("Enter task: ")
         date = input("Enter date(yyyy-mm-dd): ")
         status = False
