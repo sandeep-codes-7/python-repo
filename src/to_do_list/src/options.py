@@ -67,7 +67,7 @@ def view_task():
             for j in i:
                 print(j,end=', ' if i.index(j) != len(i)-1 else '')
             print()
-        cursor.close()
+        #cursor.close()
     except Exception as e:
         pass
 
@@ -197,3 +197,5 @@ def delete_all():
     else:
         return
 
+    
+#close
