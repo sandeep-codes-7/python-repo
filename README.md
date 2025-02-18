@@ -1,4 +1,4 @@
-# All about Python😉
+# It's all Python😉
 
 ## About:
 - In this repo, We're gonna work with some cool python projects and Trust me!, they are absolutely beginner friendly.<br>
