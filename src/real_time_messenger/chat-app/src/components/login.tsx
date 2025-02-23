@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Card, InputGroup } from "react-bootstrap";
-import { Eye, EyeSlash } from "react-bootstrap-icons"; // Import Bootstrap icons
+import { Eye, EyeSlash } from "react-bootstrap-icons"; 
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
+    navigate('/');
   };
 
   return (
