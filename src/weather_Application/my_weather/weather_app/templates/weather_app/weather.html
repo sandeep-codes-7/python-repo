@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Current weather | Weather Now</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white h-screen">
+    <div class=" flex bg-black text-white p-3 justify-between items-center shadow-2xl">
+        <div class="flex items-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/1163/1163660.png" alt="Weather Icon"
+                class="w-10 h-10 mr-2">
+            <h1 class="text-2xl font-bold ">Weather Now</h1>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <div
+                        class="p-2 h-7 w-19 flex items-center justify-center bg-blue-950 rounded-md shadow-inner hover:bg-gray-700">
+                        <a href="">about</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="flex justify-between items-center gap-5">
+        <div class="items-center justify-center flex ">
+            <h1 class="text-7xl font-bold p-10 pl-10 pt-15 bg-gradient-to-r from-blue-400 via-pink-500 to-purple-500 bg-clip-text text-transparent mt-11">❝ {{place}} ❞</h1>
+        </div>
+        <div class="items-center font-bold text-6xl pt-10 mt-5 pr-19">
+            <div><h1>{{temperature}}</h1></div>
+            <div class="pt-2"><p>{{weather}}</p></div>
+        </div>
+        <div class="  mt-16 mr-10 p-10 rounded-md">
+            <img src="{% static image %}" alt="weather icons" class="w-[10rem] h-[10rem]">
+        </div>
+    </div>
+    <div class="flex justify-center flex-wrap gap-[5rem] mt-5">
+        
+        <div class="bg-gray-800 rounded-xl p-9 shadow-2xl">
+            <div><h1 class="text-center pt-0 font-bold text-3xl bg-gradient-to-r from-white to-blue-500 bg-clip-text text-transparent">Temperature</h1></div>
+            <div><hr class="border-t border-dotted border-gray-300 my-4" /></div>
+            <div>
+                <ul class="text-xl pl-2 font-bold">
+                    <li><span class="text-gray-400">Temp: </span>{{temperature}}</li>
+                    <br/>
+                    <li><span class="text-gray-400">Feels Like: </span>{{feels_like}}</li>
+                    <br>
+                    <li><span class="text-gray-400">Max: </span>{{max}}</li>
+                    <br>
+                    <li><span class="text-gray-400">Min: </span>{{min}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-9 shadow-2xl">
+            <div><h1 class="text-center pt-0 font-bold text-3xl bg-gradient-to-l from-white to-blue-500 bg-clip-text text-transparent">Humidity and Pressure</h1></div>
+            <div><hr class="border-t border-dotted border-gray-300 my-4" /></div>
+            <div>
+                <ul class="text-xl pl-2 font-bold">
+                    <li><span class="text-gray-400">Humidity: </span>{{humidity}}</li>
+                    <br>
+                    <li><span class="text-gray-400">Pressure: </span>{{pressure}}</li>
+                    <br>
+                    <li><span class="text-gray-400">Visibility: </span>{{visibility}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-gray-800 rounded-xl p-9 shadow-2xl">
+            <div><h1 class="text-center pt-0 font-bold text-3xl bg-gradient-to-r from-white to-blue-500 bg-clip-text text-transparent">Wind</h1></div>
+            <div><hr class="border-t border-dotted border-gray-300 my-4" /></div>
+            <div>
+                <ul class="text-xl pl-2 font-bold">
+                    <li><span class="text-gray-400">Wind: </span>{{wind_speed}}</li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<footer class="bg-black mt-10 text-white p-2 flex justify-center items-center">
+    <p class="text-s text-gray-200">All rights reserverd. Do follow on <a href="" class="bg-gray-900 text-gray-400 text-xs p-1 h-[2px] rounded-full">Instagram</a></p>
+</footer>
+</html>
