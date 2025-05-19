@@ -1,2 +1,2 @@
 # SCREEN SHOTS
-![alt text](weather_Application/screen_shots/screen_shot_1.png)
+![weather app UI](src/weather_Application/screen_shots/screen_shot_1.png)
