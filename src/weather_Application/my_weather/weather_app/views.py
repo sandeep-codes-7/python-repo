@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-import requests,json 
+from django.shortcuts import render   #type: ignore
+from django.http import HttpResponse  # type: ignore
+import requests,json  # type: ignore
 
 
 
@@ -22,12 +22,12 @@ def weather(request):
     }
     if request.method == 'POST':
         place = request.POST.get('city')
-        open_cage_url = f"https://api.opencagedata.com/geocode/v1/json?q={place}&key=b4bc5c5e33834e5bb2d838635c5f19b6"
+        open_cage_url = f"https://api.opencagedata.com/geocode/v1/json?q={place}&key=<API KEY>"
         req = requests.get(open_cage_url)
         data_1 = req.json()
         longi = data_1['results'][0]['geometry']['lng']
         lati = data_1['results'][0]['geometry']['lat']
-        API_key = "2870a8cd766afa17cd62d096aec7ecd5"
+        API_key = "<API KEY>"
         url = f"https://api.openweathermap.org/data/2.5/weather?lat={lati}&lon={longi}&appid={API_key}&units=metric"
         response = requests.get(url)
         if response.status_code == 200:
