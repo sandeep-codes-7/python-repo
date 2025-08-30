@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: my-weather-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn my_weather.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: my_weather.settings
+      - key: S_KEY
+        sync: false
+      - key: API_KEY
+        sync: false
+      - key: GEO_API
+        sync: false

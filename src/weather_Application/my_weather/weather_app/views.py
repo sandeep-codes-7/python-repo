@@ -2,7 +2,10 @@ from django.shortcuts import render   #type: ignore
 from django.http import HttpResponse  # type: ignore
 import requests,json  # type: ignore
 
+from dotenv import load_dotenv #type: ignore
+import os
 
+load_dotenv()
 
 
 # Create your views here.
@@ -22,13 +25,13 @@ def weather(request):
     }
     if request.method == 'POST':
         place = request.POST.get('city')
-        open_cage_url = f"https://api.opencagedata.com/geocode/v1/json?q={place}&key=<API KEY>"
+        open_cage_url = f"https://api.opencagedata.com/geocode/v1/json?q={place}&key={os.getenv("GEO_API")}"
         req = requests.get(open_cage_url)
         data_1 = req.json()
         longi = data_1['results'][0]['geometry']['lng']
         lati = data_1['results'][0]['geometry']['lat']
         API_key = "<API KEY>"
-        url = f"https://api.openweathermap.org/data/2.5/weather?lat={lati}&lon={longi}&appid={API_key}&units=metric"
+        url = f"https://api.openweathermap.org/data/2.5/weather?lat={lati}&lon={longi}&appid={os.getenv('API_KEY')}&units=metric"
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
